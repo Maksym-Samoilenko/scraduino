@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="blockly_compressed.js"></script>
+        <script src="blocks_compressed.js"></script>
+        <script src="javascript_compressed.js"></script>
+        <script src="uk.js"></script>
+        <script src="block_options.js"></script>
+    </head>
+    <body>
+        <div id="blocklyDiv" style="height: 800px; width: 1200;"></div>
+        <button value="Generate code" name="Generate code" onclick="generateCode()">Generate code</button>
+        <script>
+        Blockly.Blocks['motor_option'] = {
+  init: function() {
+    this.jsonInit(json_motor_option);
+  }
+};
+Blockly.JavaScript['motor_option'] = function(block) {
+  var dropdown_motor = block.getFieldValue('motor');
+  var dropdown_direction = block.getFieldValue('direction');
+  var text_force = block.getFieldValue('FORCE');
+  var statements_motor_option = Blockly.JavaScript.statementToCode(block, 'motor_option');
+
+  var code = 'runMotor(' + dropdown_motor + ',' + dropdown_direction + ',' + text_force + ')';
+  return code;
+};
+</script>
+        <xml id="toolbox" style="display: none">
+            <block type="controls_if"></block>
+            <block type="controls_repeat_ext"></block>
+            <block type="logic_compare"></block>
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <block type="text"></block>
+            <block type="motor_option"></block>
+        </xml>
+        <script>
+            var workspace = Blockly.inject('blocklyDiv',
+                {toolbox: document.getElementById('toolbox')});
+        function generateCode(){
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            alert(code);
+            //overall suggesstion
+        }
+</script>
+
+    </body>
+</html>
