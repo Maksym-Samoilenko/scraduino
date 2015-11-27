@@ -13,21 +13,8 @@
         <div id="blocklyDiv" style="height: 800px; width: 1200;"></div>
         <button value="Generate code" name="Generate code" onclick="generateCode()">Generate code</button>
         <script>
-        Blockly.Blocks['motor_option'] = {
-  init: function() {
-    this.jsonInit(json_motor_option);
-  }
-};
-Blockly.JavaScript['motor_option'] = function(block) {
-  var dropdown_motor = block.getFieldValue('motor');
-  var dropdown_direction = block.getFieldValue('direction');
-  var text_force = block.getFieldValue('FORCE');
-  var statements_motor_option = Blockly.JavaScript.statementToCode(block, 'motor_option');
 
-  var code = 'runMotor(' + dropdown_motor + ',' + dropdown_direction + ',' + text_force + ')';
-  return code;
-};
-</script>
+        </script>
         <xml id="toolbox" style="display: none">
             <block type="controls_if"></block>
             <block type="controls_repeat_ext"></block>
@@ -35,7 +22,13 @@ Blockly.JavaScript['motor_option'] = function(block) {
             <block type="math_number"></block>
             <block type="math_arithmetic"></block>
             <block type="text"></block>
-            <block type="motor_option"></block>
+            <block type="run_motor_for_power_and_time_function"></block>
+            <block type="run_motor_for_distance_and_power_function"></block>
+            <block type="turn_n_grad_function"></block>
+            <block type="stop_selected_motor_function"></block>
+            <block type="stop_all_motors_function"></block>
+            <block type="check_if_barrier_is_close_than_n_sm_then_turn_k_grad_function"></block>
+
         </xml>
         <script>
             var workspace = Blockly.inject('blocklyDiv',
@@ -43,9 +36,9 @@ Blockly.JavaScript['motor_option'] = function(block) {
         function generateCode(){
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             alert(code);
-            //overall suggesstion
+            //overall suggesstion - place in some logic file + place tgoolbox   
         }
-</script>
+        </script>
 
     </body>
 </html>
