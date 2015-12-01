@@ -7,6 +7,7 @@
         <script src="blocks_compressed.js"></script>
         <script src="javascript_compressed.js"></script>
         <script src="uk.js"></script>
+        <script src="car_configuration.js"></script>
         <script src="block_options.js"></script>
     </head>
     <body>
@@ -35,8 +36,11 @@
                 {toolbox: document.getElementById('toolbox')});
         function generateCode(){
             var code = Blockly.JavaScript.workspaceToCode(workspace);
-            alert(code);
-            //overall suggesstion - place in some logic file + place tgoolbox   
+            var BASE_SKETCH_CONTENT = 
+                RUN_MOTOR_FOR_POWER_AND_TIME_FUNCTION +
+                "void setup(){"+ CAR_PIN_CONTANTS + CAR_PINS_SETUP +"}void loop(){" + code + "}";
+            console.log(BASE_SKETCH_CONTENT);
+  
         }
         </script>
 

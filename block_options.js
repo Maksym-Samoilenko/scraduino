@@ -1,6 +1,6 @@
-var  run_motor_for_power_and_time_function = {
+var run_motor_for_power_and_time_function = {
   "id": "run_motor_for_power_and_time_function",
-  "message0": "Select %1 %2 with power %3 for %4 seconds",
+  "message0": "Select motor %1 %2 and select direction %3 %4 with power %5 for  %6 sec",
   "args0": [
     {
       "type": "field_dropdown",
@@ -18,6 +18,24 @@ var  run_motor_for_power_and_time_function = {
     },
     {
       "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "DIRECTION",
+      "options": [
+        [
+          "front",
+          "FRONT"
+        ],
+        [
+          "back",
+          "BACK"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy",
+      "align": "RIGHT"
     },
     {
       "type": "input_value",
@@ -41,10 +59,12 @@ var  run_motor_for_power_and_time_function = {
 
 Blockly.JavaScript['run_motor_for_power_and_time_function'] = function(block) {
   var dropdown_motor = block.getFieldValue('MOTOR');
+  var dropdown_direction = block.getFieldValue('DIRECTION');
   var value_power = Blockly.JavaScript.valueToCode(block, 'POWER', Blockly.JavaScript.ORDER_ATOMIC);
   var value_time = Blockly.JavaScript.valueToCode(block, 'TIME', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = 'XinterpipeX'
+  var code = "runMotor(" + (dropdown_motor == "LEFT") + "," + (dropdown_direction == "FRONT") + "," + value_power + "," + value_time + ");";
+
   return code;
 };
 
@@ -61,7 +81,7 @@ Blockly.Blocks['run_motor_for_power_and_time_function'] = {
 
 var run_motor_for_distance_and_power_function = {
   "id": "run_motor_for_distance_and_power_function",
-  "message0": "Select %1 %2 with power %3 for %4 sm",
+  "message0": "Select motor %1 %2 and select direction %3 %4 with power %5 for  %6 sm",
   "args0": [
     {
       "type": "field_dropdown",
@@ -81,6 +101,24 @@ var run_motor_for_distance_and_power_function = {
       "type": "input_dummy"
     },
     {
+      "type": "field_dropdown",
+      "name": "DIRECTION",
+      "options": [
+        [
+          "front",
+          "FRONT"
+        ],
+        [
+          "back",
+          "BACK"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy",
+      "align": "RIGHT"
+    },
+    {
       "type": "input_value",
       "name": "POWER",
       "check": "Number"
@@ -97,11 +135,12 @@ var run_motor_for_distance_and_power_function = {
   "colour": 90,
   "tooltip": "",
   "helpUrl": "http://www.example.com/"
-};
+}
 
 
 Blockly.JavaScript['run_motor_for_distance_and_power_function'] = function(block) {
   var dropdown_motor = block.getFieldValue('MOTOR');
+  var dropdown_direction = block.getFieldValue('DIRECTION');
   var value_power = Blockly.JavaScript.valueToCode(block, 'POWER', Blockly.JavaScript.ORDER_ATOMIC);
   var value_distance = Blockly.JavaScript.valueToCode(block, 'DISTANCE', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
