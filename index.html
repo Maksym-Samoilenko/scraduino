@@ -23,6 +23,7 @@
             <block type="math_number"></block>
             <block type="math_arithmetic"></block>
             <block type="text"></block>
+            <block type="run_both_motors_for_power_and_time_function"></block>
             <block type="run_motor_for_power_and_time_function"></block>
             <block type="run_motor_for_distance_and_power_function"></block>
             <block type="turn_n_grad_function"></block>
@@ -36,9 +37,10 @@
                 {toolbox: document.getElementById('toolbox')});
         function generateCode(){
             var code = Blockly.JavaScript.workspaceToCode(workspace);
-            var BASE_SKETCH_CONTENT = 
+            var BASE_SKETCH_CONTENT = CAR_PIN_CONTANTS +
                 RUN_MOTOR_FOR_POWER_AND_TIME_FUNCTION +
-                "void setup(){"+ CAR_PIN_CONTANTS + CAR_PINS_SETUP +"}void loop(){" + code + "}";
+                RUN_BOTH_MOTORS_FOR_POWER_AND_TIME_FUNCTION +
+                "void setup(){" + CAR_PINS_SETUP +"}void loop(){if(runOnce){" + code + "}runOnce = false; "+ FLUSH_ALL_PINS +"}";
             console.log(BASE_SKETCH_CONTENT);
   
         }

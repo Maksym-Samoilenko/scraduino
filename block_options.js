@@ -63,7 +63,7 @@ Blockly.JavaScript['run_motor_for_power_and_time_function'] = function(block) {
   var value_power = Blockly.JavaScript.valueToCode(block, 'POWER', Blockly.JavaScript.ORDER_ATOMIC);
   var value_time = Blockly.JavaScript.valueToCode(block, 'TIME', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = "runMotor(" + (dropdown_motor == "LEFT") + "," + (dropdown_direction == "FRONT") + "," + value_power + "," + value_time + ");";
+  var code = "runMotorPowerTime(" + (dropdown_motor == "LEFT") + "," + (dropdown_direction == "FRONT") + "," + value_power + "," + (parseInt(value_time) * 1000) + ");";
 
   return code;
 };
@@ -312,6 +312,64 @@ Blockly.JavaScript['check_if_barrier_is_close_than_n_sm_then_turn_k_grad_functio
 Blockly.Blocks['check_if_barrier_is_close_than_n_sm_then_turn_k_grad_function'] = {
   init: function() {
     this.jsonInit(check_if_barrier_is_close_than_n_sm_then_turn_k_grad_function);
+  }
+};
+
+//---------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
+
+var run_both_motors_for_power_and_time_function = {
+  "id": "run_both_motors_for_power_and_time_function",
+  "message0": "Select direction %1 %2 with power %3 for time %4 sec",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "DIRECTION",
+      "options": [
+        [
+          "forward",
+          "FORWARD"
+        ],
+        [
+          "back",
+          "BACK"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "POWER",
+      "check": "Number"
+    },
+    {
+      "type": "input_value",
+      "name": "TIME",
+      "check": "Number"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": "http://www.example.com/"
+};
+
+Blockly.JavaScript['run_both_motors_for_power_and_time_function'] = function(block) {
+  var dropdown_direction = block.getFieldValue('DIRECTION');
+  var value_power = Blockly.JavaScript.valueToCode(block, 'POWER', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_time = Blockly.JavaScript.valueToCode(block, 'TIME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = "runBothMotorsPowerTime(" + (dropdown_direction == "FORWARD") + "," + value_power + "," + (parseInt(value_time) * 1000) + ");";
+  return code;
+};
+
+Blockly.Blocks['run_both_motors_for_power_and_time_function'] = {
+  init: function() {
+    this.jsonInit(run_both_motors_for_power_and_time_function);
   }
 };
 
