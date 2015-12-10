@@ -1,46 +1,52 @@
 var run_motor_for_power_and_time_function = {
   "id": "run_motor_for_power_and_time_function",
-  "message0": "Select motor %1 %2 and select direction %3 %4 with power %5 for  %6 sec",
+  "message0": "Включити мотор %1 рухаючись %2 з потужністю %3 протягом %4 сек",
   "args0": [
     {
       "type": "field_dropdown",
       "name": "MOTOR",
       "options": [
         [
-          "left",
+          "лівий",
           "LEFT"
         ],
         [
-          "right",
+          "правий",
           "RIGHT"
         ]
       ]
-    },
-    {
-      "type": "input_dummy"
     },
     {
       "type": "field_dropdown",
       "name": "DIRECTION",
       "options": [
         [
-          "front",
+          "вперед",
           "FRONT"
         ],
         [
-          "back",
+          "назад",
           "BACK"
         ]
       ]
     },
     {
-      "type": "input_dummy",
-      "align": "RIGHT"
-    },
-    {
-      "type": "input_value",
+      "type": "field_dropdown",
       "name": "POWER",
-      "check": "Number"
+      "options": [
+        [
+          "мала",
+          "SMALL"
+        ],
+        [
+          "середня",
+          "MEDIUM"
+        ],
+        [
+          "велика",
+          "BIG"
+        ]
+      ]
     },
     {
       "type": "input_value",
@@ -51,7 +57,7 @@ var run_motor_for_power_and_time_function = {
   "inputsInline": true,
   "previousStatement": null,
   "nextStatement": null,
-  "colour": 90,
+  "colour": 20,
   "tooltip": "",
   "helpUrl": "http://www.example.com/"
 }
@@ -60,11 +66,18 @@ var run_motor_for_power_and_time_function = {
 Blockly.JavaScript['run_motor_for_power_and_time_function'] = function(block) {
   var dropdown_motor = block.getFieldValue('MOTOR');
   var dropdown_direction = block.getFieldValue('DIRECTION');
-  var value_power = Blockly.JavaScript.valueToCode(block, 'POWER', Blockly.JavaScript.ORDER_ATOMIC);
+  var dropdown_power = block.getFieldValue('POWER');
+  var power = 0;
+  if(dropdown_power === "SMALL"){
+    power = 100;
+  } else if(dropdown_power === "MEDIUM"){
+    power = 175;
+  } else if(dropdown_power === "BIG"){
+    power = 250;
+  }
   var value_time = Blockly.JavaScript.valueToCode(block, 'TIME', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = "runMotorPowerTime(" + (dropdown_motor == "LEFT") + "," + (dropdown_direction == "FRONT") + "," + value_power + "," + (parseInt(value_time) * 1000) + ");";
-
+  var code = "runMotorPowerTime(" + (dropdown_motor == "LEFT") + "," + (dropdown_direction == "FRONT") + "," + power + "," + (parseFloat(value_time) * 1000) + ");";
   return code;
 };
 
@@ -81,47 +94,53 @@ Blockly.Blocks['run_motor_for_power_and_time_function'] = {
 
 var run_motor_for_distance_and_power_function = {
   "id": "run_motor_for_distance_and_power_function",
-  "message0": "Select motor %1 %2 and select direction %3 %4 with power %5 for  %6 sm",
+  "message0": "Включити мотор %1 рухаючись %2 з потужністю %3 з відстанню %4 см",
   "args0": [
     {
       "type": "field_dropdown",
       "name": "MOTOR",
       "options": [
         [
-          "left",
+          "лівий",
           "LEFT"
         ],
         [
-          "right",
+          "правий",
           "RIGHT"
         ]
       ]
-    },
-    {
-      "type": "input_dummy"
     },
     {
       "type": "field_dropdown",
       "name": "DIRECTION",
       "options": [
         [
-          "front",
+          "вперед",
           "FRONT"
         ],
         [
-          "back",
+          "назад",
           "BACK"
         ]
       ]
     },
     {
-      "type": "input_dummy",
-      "align": "RIGHT"
-    },
-    {
-      "type": "input_value",
+      "type": "field_dropdown",
       "name": "POWER",
-      "check": "Number"
+      "options": [
+        [
+          "мала",
+          "SMALL"
+        ],
+        [
+          "середня",
+          "MEDIUM"
+        ],
+        [
+          "велика",
+          "BIG"
+        ]
+      ]
     },
     {
       "type": "input_value",
@@ -132,22 +151,28 @@ var run_motor_for_distance_and_power_function = {
   "inputsInline": true,
   "previousStatement": null,
   "nextStatement": null,
-  "colour": 90,
+  "colour": 20,
   "tooltip": "",
   "helpUrl": "http://www.example.com/"
 }
 
-
 Blockly.JavaScript['run_motor_for_distance_and_power_function'] = function(block) {
   var dropdown_motor = block.getFieldValue('MOTOR');
   var dropdown_direction = block.getFieldValue('DIRECTION');
-  var value_power = Blockly.JavaScript.valueToCode(block, 'POWER', Blockly.JavaScript.ORDER_ATOMIC);
+  var dropdown_power = block.getFieldValue('POWER');
   var value_distance = Blockly.JavaScript.valueToCode(block, 'DISTANCE', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
+    var power = 0;
+  if(dropdown_power === "SMALL"){
+    power = 100;
+  } else if(dropdown_power === "MEDIUM"){
+    power = 175;
+  } else if(dropdown_power === "BIG"){
+    power = 250;
+  }
   var code = '...';
   return code;
 };
-
 
 Blockly.Blocks['run_motor_for_distance_and_power_function'] = {
   init: function() {
