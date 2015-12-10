@@ -30,6 +30,8 @@
             <block type="stop_selected_motor_function"></block>
             <block type="stop_all_motors_function"></block>
             <block type="check_if_barrier_is_close_than_n_sm_then_turn_k_grad_function"></block>
+            <block type="pen_up"></block>
+            <block type="pen_down"></block>
 
         </xml>
         <script>
@@ -39,6 +41,10 @@
             var code = Blockly.JavaScript.workspaceToCode(workspace);
             var BASE_SKETCH_CONTENT = CAR_PIN_CONTANTS +
                 RUN_MOTOR_FOR_POWER_AND_TIME_FUNCTION +
+                TURN_N_GRAD_FUNCTION +  
+                PEN_UP +
+                PEN_DOWN +
+                CHECK_IF_BARRIER_IS_CLOSE_THAN_N_SM_THEN_TURN_K_GRAD_FUNCTION + 
                 RUN_BOTH_MOTORS_FOR_POWER_AND_TIME_FUNCTION +
                 "void setup(){" + CAR_PINS_SETUP +"}void loop(){if(runOnce){" + code + "}runOnce = false; "+ FLUSH_ALL_PINS +"}";
             console.log(BASE_SKETCH_CONTENT);

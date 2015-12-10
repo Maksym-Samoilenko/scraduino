@@ -182,7 +182,7 @@ var turn_n_grad_function = {
 Blockly.JavaScript['turn_n_grad_function'] = function(block) {
   var value_grad = Blockly.JavaScript.valueToCode(block, 'GRAD', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = "turn(" + value_grad + ");";
   return code;
 };
 
@@ -304,7 +304,7 @@ Blockly.JavaScript['check_if_barrier_is_close_than_n_sm_then_turn_k_grad_functio
   var value_distance_sensor = Blockly.JavaScript.valueToCode(block, 'DISTANCE_SENSOR', Blockly.JavaScript.ORDER_ATOMIC);
   var value_turn = Blockly.JavaScript.valueToCode(block, 'TURN', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = "checkIfBarrierIsCloseThanNSmThenTurnKGrad(" + value_distance_sensor + ", " + value_turn + ");";
   return code;
 };
 
@@ -375,3 +375,50 @@ Blockly.Blocks['run_both_motors_for_power_and_time_function'] = {
 
 //---------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------
+
+var pen_up = {
+  "id": "pen_up",
+  "message0": "pen up",
+  "args0": [],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": "http://www.example.com/"
+};
+
+Blockly.JavaScript['pen_up'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'penUp();';
+  return code;
+};
+
+Blockly.Blocks['pen_up'] = {
+  init: function() {
+    this.jsonInit(pen_up);
+  }
+};
+
+
+var pen_down = {
+  "id": "pen_down",
+  "message0": "pen down",
+  "args0": [],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": "http://www.example.com/"
+};
+
+Blockly.JavaScript['pen_down'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'penDown();';
+  return code;
+};
+
+Blockly.Blocks['pen_down'] = {
+  init: function() {
+    this.jsonInit(pen_down);
+  }
+};
